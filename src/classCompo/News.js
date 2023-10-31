@@ -160,13 +160,13 @@ const News = (props) => {
             <InfiniteScroll
                 dataLength={articles && articles.length}
                 next={fetchMoreData}
-                hasMore={articles.length !== totalResults}
+                hasMore={articles && articles.length !== totalResults}
                 loader={<Spinner />}
             >
                 <div className="container">
 
                     <div className="row">
-                        {articles.filter(article => article.title !== "[Removed]").map((element) => {
+                        {articles && articles.filter(article => article.title !== "[Removed]").map((element) => {
                             return <div className="col-md-4" key={element.url}>
                                 {/* {console.log(element.title)} */}
                                 <NewsItem title={element.title ? element.title : " "} description={element.description ? element.description : " "} imageUrl={element.urlToImage ? element.urlToImage : "https://images.cnbctv18.com/wp-content/uploads/2023/06/2023_6img27_Jun_2023_PTI06_27_2023_000227B-1019x573.jpg"} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
